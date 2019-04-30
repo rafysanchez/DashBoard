@@ -1,0 +1,104 @@
+﻿@model Sow.Automation.Dashboard.ViewModels.ResumoProcessosViewModel
+@using Sow.Automation.Data.Entidades.ServicosRoboContexto.Enums
+
+
+<link rel="stylesheet" href="~/dashboard/css/viewcomponents/ResumoProcessos.css">
+
+
+<div class="row" id="idResumoProcesso">
+   
+    <div class="col-md-12">
+
+        <div class="portlet sombreamento">
+            <!--Inicio Tabela resumo processos-->
+            <!-- /primary heading -->
+         
+            <div id="portlet2" class="panel-collapse collapse show">
+                <div class="portlet-body">
+                    <div class="table-responsive">
+                        <h4 class="header ajusteCabecalho">Processos</h4>
+                        
+                        <table class="table table-hover" id="idtableResumoProcessos">
+                            <thead>
+                                <tr style="background:#3c81ca">
+                                    <th>DESCRICAO</th>
+                                    <th>PERIODICIDADE</th>
+                                    <th>DATA DE INICIO</th>
+                                    <th>ÚLTIMA EXECUÇÃO</th>
+                                    <th>PRÓXIMA EXECUÇÃO</th>
+                                    <th>STATUS</th>
+                                    <th>DETALHES</th>
+                                    <th>EXECUTAR</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var processo in Model._listaAgendamentos)
+                                {
+                                    @if (processo.Ativo)
+                                    {
+                                        <tr class="processo">
+                                            <td class="nomeProcesso">@processo.Descricao</td>
+                                            <td class="nomeProcesso">A cada: @processo.FrequenciaPeriodicidade @processo.Periodicidade</td>
+                                            <td class="nomeProcesso">@processo.DataInicio</td>
+                                            <td>@processo.DataUltimaExecucao</td>
+                                            <td>@processo.DataProximaExecucao</td>
+                                            <td>
+
+                                                @if (processo.StatusAgendamento == EStatusAgendamento.Finalizado)
+                                                {
+                                                    <div>
+                                                        <p class="status-processo-texto-verde">@processo.StatusAgendamento</p>
+                                                    </div>
+                                                }
+
+                                                @if (processo.StatusAgendamento == EStatusAgendamento.FinalizadoComErro)
+                                                {
+                                                    <div>
+                                                        <p class="status-processo-texto-vermelho">@processo.StatusAgendamento</p>
+                                                    </div>
+                                                }
+                                                @if (processo.StatusAgendamento == EStatusAgendamento.Aguardando)
+                                                {
+                                                    <div>
+                                                        <p class="status-processo-texto-azul">@processo.StatusAgendamento</p>
+                                                    </div>
+                                                }
+                                                @if (processo.StatusAgendamento == EStatusAgendamento.Executando)
+                                                {
+                                                    <div>
+                                                        <p class="status-processo-texto-laranja">@processo.StatusAgendamento</p>
+                                                    </div>
+                                                }
+                                                @if (processo.StatusAgendamento == EStatusAgendamento.NaFila)
+                                                {
+                                                    <div>
+                                                        <p class="status-processo-texto-laranja">@processo.StatusAgendamento</p>
+                                                    </div>
+                                                }
+
+                                            </td>
+                                            <td>
+                                                <button id="idVerDetalhesProcesso" onclick="IrDetalhesProcesso('@processo.IdProcesso')" type="button" class="btn btn-info waves-effect waves-light botao-detalhes VerDetalheProcesso">
+                                                    <span class="btn-label icone-detalhes">
+                                                        <i class="ion-document"></i>
+                                                    </span>Lista Execuções
+                                                </button>
+                                            </td>
+                                            <td><a href="#" onclick="FormExecutar('@processo.IdProcesso', '@processo.Descricao')" style="@(processo.DisparoManual != true ? "display:none":"")"><i class="md-play-circle-fill icone-executar"></i></a></td>
+                                        </tr>
+
+                                    }
+
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Fim Tabela resumo processos -->
+    </div> <!-- end col -->
+</div>
+
+<script src="~/dashboard/scripts/viewcomponents/ResumoProcessos.js"></script>

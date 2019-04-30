@@ -1,0 +1,18 @@
+﻿body {
+}
+ th {
+    color: white !important;
+}
+ .btnRed{
+
+     color: red;
+
+ }
+.btnGreen {
+    color: green;
+}
+
+.disableBtn {
+    pointer-events: none;
+    color:grey;
+}

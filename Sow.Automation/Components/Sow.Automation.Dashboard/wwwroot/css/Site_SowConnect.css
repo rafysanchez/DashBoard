@@ -1,0 +1,39 @@
+﻿.container-sow {
+    padding-right:15px;
+    margin-right:auto;
+    margin-left:auto;
+}
+
+.mais-detalhes {
+    background: #9cc7ef;
+    width: 95%;
+    height: 25px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin-top: -35px;
+    text-align: center;
+}
+
+/*INICIO - EFEITO DE SOMBRA SEM O HOVER*/
+.sombreamento {
+    box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.2), 0px 6px 20px 0px rgba(0, 0, 0, 0.19);
+}
+
+.sombraAgendamento {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+/*FIM - EFEITO DE SOMBRA SEM O HOVER*/
+
+.topbar-sow {
+    border-bottom: 4px solid #9cc7ef;
+}
+
+/* ============================================ REQUIRED INVÁLIDO =========================================================== */
+
+/*input:required:invalid, input:focus:invalid {
+    border-color: red;
+}
+
+input:required:valid {
+    border-color: #337ab7;
+}*/

@@ -1,0 +1,325 @@
+﻿@model Sow.Automation.Dashboard.ViewModels.GerenciaRegrasViewModel
+
+
+<link rel="stylesheet" href="~/dashboard/css/viewcomponents/GerenciaRegras.css">
+
+
+<div class="row card-box m-b-20 card-body sombreamento">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="">
+                <h4 class="header">
+                    Gerencia de Regras
+                </h4>
+
+                <p id="idDescMenuGerencia">
+                    Para cadastrar um novo item é muito simples, basta selecionar um tipo de cadastro na lista a direita e clicar em Cadastrar
+                </p>
+                <div id="portlet2" class="panel-collapse collapse show">
+                    <div class="portlet-body">
+                        <div class="table-responsive">
+
+                            @switch (Model.Fluxo)
+                            {
+                                case "1":
+                                    <table class="table table-hover" id="idtableRegras">
+
+                                        <thead>
+                                            <tr style="background:#3c81ca">
+                                                <th>Estado</th>
+                                                <th>Comarca</th>
+                                                <th>Editar</th>
+                                                <th>Remover</th>
+                                                <th>Salvar</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            @foreach (var regra in Model.RegrasBairros)
+                                            {
+                                                <tr>
+                                                    <td>@regra.Estado</td>
+                                                    <td alterar="alterar">@regra.Comarca</td>
+                                                    <td>
+                                                        <a onclick="Editar(this)" href="#"><i class="glyphicon glyphicon-credit-card"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a id="@regra.IdComarca" idestado="@regra.IdEstado" url="/Configuracoes/RemoverComarca" onclick="RemoverDados(this)" href="#"><i class="glyphicon glyphicon-remove btnRed"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="disableBtn" id="@regra.IdComarca" idestado="@regra.IdEstado" url="/Configuracoes/AtualizarComarca" onclick="AtualizarDados(this)" href="#"><i class="glyphicon glyphicon-floppy-saved btnGreen"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                    break;
+                                case "2":
+                                    <table class="table table-hover" id="idtableRegras">
+                                        <thead>
+                                            <tr style="background:#3c81ca">
+                                                <th>Estado</th>
+                                                <th>Comarca</th>
+                                                <th>Cidade</th>
+                                                <th>Editar</th>
+                                                <th>Remover</th>
+                                                <th>Salvar</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            @foreach (var regra in Model.RegrasBairros)
+                                            {
+                                                <tr>
+                                                    <td>@regra.Estado</td>
+                                                    <td><select disabled class="dropDownStyle"><option value="@regra.IdComarca">@regra.Comarca</option></select></td>
+                                                    <td alterar="alterar">@regra.Cidade</td>
+                                                    <td>
+                                                        <a onclick="Editar(this)" idestado="@regra.IdEstado" cidade="true" href="#"><i class="glyphicon glyphicon-credit-card"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a id="@regra.IdCidade" idcomarca="@regra.IdComarca" idestado="@regra.IdEstado" url="/Configuracoes/RemoverCidade" onclick="RemoverDados(this)" href="#"><i class="glyphicon glyphicon-remove btnRed"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="disableBtn" id="@regra.IdCidade" idcomarca="@regra.IdComarca" idestado="@regra.IdEstado" url="/Configuracoes/AtualizarCidade" onclick="AtualizarDados(this)" href="#"><i class="glyphicon glyphicon-floppy-saved btnGreen"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                    break;
+                                case "3":
+                                    <table class="table table-hover" id="idtableRegras">
+                                        <thead>
+                                            <tr style="background:#3c81ca">
+                                                <th>Estado</th>
+                                                <th>Comarca</th>
+                                                <th>Cidade</th>
+                                                <th>Bairro</th>
+                                                <th>Editar</th>
+                                                <th>Remover</th>
+                                                <th>Salvar</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            @foreach (var regra in Model.RegrasBairros)
+                                            {
+                                                <tr>
+                                                    <td>@regra.Estado</td>
+                                                    <td>@regra.Comarca</td>
+                                                    <td>@regra.Cidade</td>
+                                                    <td alterar="alterar">@regra.Bairro</td>
+                                                    <td>
+                                                        <a onclick="Editar(this)" href="#"><i class="glyphicon glyphicon-credit-card"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a id="@regra.IdBairro" idcidade="@regra.IdCidade" idcomarca="@regra.IdComarca" idestado="@regra.IdEstado" url="/Configuracoes/RemoverBairro" onclick="RemoverDados(this)" href="#"><i class="glyphicon glyphicon-remove btnRed"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="disableBtn" id="@regra.IdBairro" idcidade="@regra.IdCidade" idcomarca="@regra.IdComarca" idestado="@regra.IdEstado" url="/Configuracoes/AtualizarBairro" onclick="AtualizarDados(this)" href="#"><i class="glyphicon glyphicon-floppy-saved btnGreen"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                    break;
+                                case "4":
+                                    <table class="table table-hover" id="idtableRegras">
+                                        <thead>
+                                            <tr style="background:#3c81ca">
+                                                <th>Estado</th>
+                                                <th>Comarca</th>
+                                                <th>Cidade</th>
+                                                <th>Forum</th>
+                                                <th>Editar</th>
+                                                <th>Remover</th>
+                                                <th>Salvar</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            @foreach (var regra in Model.Regras)
+                                            {
+                                                <tr>
+                                                    <td>@regra.Estado</td>
+                                                    <td>@regra.Comarca</td>
+                                                    <td>@regra.Cidade</td>
+                                                    <td alterar="alterar">@regra.Regra</td>
+                                                    <td>
+                                                        <a onclick="Editar(this)" href="#"><i class="glyphicon glyphicon-credit-card"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a idestado="@regra.IdEstado" idcomarca="@regra.IdComarca" idcidade="@regra.IdCidade" url="/Configuracoes/RemoverRegra" onclick="RemoverDados(this)" href="#"><i class="glyphicon glyphicon-remove btnRed"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="disableBtn" idestado="@regra.IdEstado" idcomarca="@regra.IdComarca" idcidade="@regra.IdCidade" url="/Configuracoes/AtualizarRegra" onclick="AtualizarDados(this)" href="#"><i class="glyphicon glyphicon-floppy-saved btnGreen"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                    break;
+                                case "5":
+                                    <table class="table table-hover" id="idtableRegras">
+                                        <thead>
+                                            <tr style="background:#3c81ca">
+                                                <th>Estado</th>
+                                                <th>Comarca</th>
+                                                <th>Cidade</th>
+                                                <th>Bairro</th>
+                                                <th>Forum</th>
+                                                <th>Editar</th>
+                                                <th>Remover</th>
+                                                <th>Salvar</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            @foreach (var regra in Model.RegrasBairros)
+                                            {
+                                                <tr>
+                                                    <td>@regra.Estado</td>
+                                                    <td>@regra.Comarca</td>
+                                                    <td>@regra.Cidade</td>
+                                                    <td>@regra.Bairro</td>
+                                                    <td alterar="alterar">@regra.Regra</td>
+                                                    <td>
+                                                        <a onclick="Editar(this)" href="#"><i class="glyphicon glyphicon-credit-card"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a idestado="@regra.IdEstado" idcomarca="@regra.IdComarca" idcidade="@regra.IdCidade" idbairro="@regra.IdBairro" url="/Configuracoes/RemoverRegraBairro" onclick="RemoverDados(this)" href="#"><i class="glyphicon glyphicon-remove btnRed"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="disableBtn" idestado="@regra.IdEstado" idcomarca="@regra.IdComarca" idcidade="@regra.IdCidade" idbairro="@regra.IdBairro" url="/Configuracoes/AtualizarRegraBairro" onclick="AtualizarDados(this)" href="#"><i class="glyphicon glyphicon-floppy-saved btnGreen"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                    break;
+                                case "6":
+                                    <table class="table table-hover" id="idtableRegras">
+
+                                        <thead>
+                                            <tr style="background:#3c81ca">
+                                                <th>Contrato</th>
+                                                <th>Remover</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            @foreach (var regra in Model.Dados)
+                                            {
+                                                <tr>
+                                                    <td>@regra</td>
+                                                    <td>
+                                                        <a id="@regra" url="/Configuracoes/RemoverContrato" onclick="RemoverDadosContrato(this)" href="#"><i class="glyphicon glyphicon-remove btnRed"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                    break;
+                                case "7":
+                                    <table class="table table-hover" id="idtableRegras">
+
+                                        <thead>
+                                            <tr style="background:#3c81ca">
+                                                <th>Despesa</th>
+                                                <th>Remover</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            @foreach (var regra in Model.Dados)
+                                            {
+                                                <tr>
+                                                    <td>@regra</td>
+                                                    <td>
+                                                        <a id="@regra" url="/Configuracoes/RemoverDespesa" onclick="RemoverDadosDespesa(this)" href="#"><i class="glyphicon glyphicon-remove btnRed"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                    break;
+                                case "8":
+                                    <table class="table table-hover" id="idtableRegras">
+
+                                        <thead>
+                                            <tr style="background:#3c81ca">
+                                                <th>Estado</th>
+                                                <th>De</th>
+                                                <th>Ate</th>
+                                                <th>Editar</th>
+                                                <th>Remover</th>
+                                                <th>Salvar</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @foreach (var custa in Model.Custas)
+                                            {
+                                                <tr>
+                                                    <td>@custa.Estado</td>
+                                                    <td de="de">@custa.De</td>
+                                                    <td ate="ate">@custa.Ate</td>
+                                                    <td>
+                                                        <a onclick="EditarCustas(this)" href="#"><i class="glyphicon glyphicon-credit-card"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a vlestado="@custa.IdEstado" url="/Configuracoes/RemoverCusta" onclick="RemoverDadosCusta(this)" href="#"><i class="glyphicon glyphicon-remove btnRed"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a vlestado="@custa.IdEstado" class="disableBtn" url="/Configuracoes/AtualizarCusta" onclick="AtualizarDadosCusta(this)" href="#"><i class="glyphicon glyphicon-floppy-saved btnGreen"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                    break;
+                                default:
+                                    break;
+                            }
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="idListaRegras">
+
+    <div class="col-md-12">
+
+        <div class="portlet sombreamento">
+            <!--Inicio Tabela resumo processos-->
+            <!-- /primary heading -->
+
+
+        </div><!-- Fim Tabela resumo processos -->
+    </div> <!-- end col -->
+</div>
+
+
+<script src="~/dashboard/scripts/viewcomponents/jqTablesRegrasComarcas.js"></script>
+<script src="~/dashboard/scripts/viewcomponents/GerenciarRegras.js"></script>

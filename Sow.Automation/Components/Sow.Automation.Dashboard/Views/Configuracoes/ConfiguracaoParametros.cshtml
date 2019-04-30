@@ -1,0 +1,37 @@
+﻿
+<script src="~/assets/js/jquery.min.js"></script>
+
+<div class="page-header-2 page-header-2-sow" style="background-color:white;margin-top:-30px;">
+    <ul class="breadcrumb pull-right">
+        <li><i class="ti-home"></i> <a href="~/Home/Index">Home</a></li>
+        <li class="active">Gerenciar</li>
+    </ul>
+    <h3>DashBoard <small>Gerenciamento de Regras e Comarcas</small></h3>
+</div>
+
+<div id="idConteudoGerencia" class="row card-box m-b-20 card-body sombreamento">
+    <h4>Selecione o tipo que deseja Gerenciar:</h4>
+    <select id="idDropDownTipoCadastro">
+        <option value="0">Selecione o tipo de Cadastro</option>
+        <option value="1">Comarca</option>
+        <option value="2">Cidade</option>
+        <option value="3">Bairro</option>
+        <option value="4">Regra Forum</option>
+        <option value="5">Regra Forum Bairro</option>
+        <option value="6">Contrato</option>
+        <option value="7">Despesa</option>
+        <option value="8">Custas</option>
+    </select>
+</div>
+
+
+<div style="margin-top:30px;">
+  <vc:cadastro-regras></vc:cadastro-regras>
+</div>
+
+<div id="idConteudoLista" style="margin-top:30px;">
+   <vc:gerencia-regras fluxo="0"></vc:gerencia-regras>
+</div>
+
+
+

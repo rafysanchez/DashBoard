@@ -1,0 +1,104 @@
+﻿@model Sow.Automation.Dashboard.ViewModels.ResumoProcessosViewModel
+@using Sow.Automation.Data.Entidades.ServicosRoboContexto.Enums
+
+<!-- Cartões Informativos -->
+<div class="row mb-3" style="padding-left:10px;">
+
+    <!-- Boas Vindas -->
+    <div class="col-md-3">
+
+        <div class="row">
+            <div id="card1" class="card-box" style="width:95%;height:140px;">
+                <div class="card-body">
+                    <div class="pull-right">
+                        <i class="ion-clock" style="font-size:3em;color:#3c82ca"></i>
+                    </div>
+                    <h1 style="font-size:15px;"><strong>Seja Bem-Vindo(a)</strong></h1>
+                    <h4 style="font-size:15px;margin-top:-15px;">@ViewData["usuario"]</h4>
+                    <h1 class="display-4">&nbsp;</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card-body mais-detalhes">
+                <span class="text-uppercase" style="font-size:10.5px;margin-top:-20px;color:#3c82ca;">@DateTime.Now.ToLongDateString() - @DateTime.Now.ToShortTimeString()</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Executados com Sucesso -->
+    <div class="col-md-3">
+
+        <div class="row">
+            <div id="card2" class="card-box" style="width:95%;height:140px;">
+                <div class="card-body">
+                    <div class="pull-right">
+                        <i class="icon-pie-chart" style="font-size:3em;color:#3c82ca"></i>
+                    </div>
+                    <h1 class="display-4">&nbsp;</h1>
+                    <h6 style="font-size:15px;margin-top:-30px;"><strong>Executados com Sucesso</strong></h6>
+                    <h1 style="color:green;font-size:35px;margin-top:-15px;"><strong>@(Model.Sucesso)</strong></h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card-body mais-detalhes">
+                <span class=""><a href="#" onclick="MostraExecucoes(@("0"))">Mais detalhes  <i style="color:darkslategrey;" class="ion-plus-circled"></i></a></span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Erros -->
+    <div class="col-md-3">
+
+        <div class="row">
+            <div id="card3" class="card-box" style="width:95%;height:140px;">
+                <div class="card-body">
+                    <div class="pull-right">
+                        <i class="ti-alert" style="font-size:3em;color:#3c82ca"></i>
+                    </div>
+                    <h1 class="display-4">&nbsp;</h1>
+                    <h6 style="font-size:15px;margin-top:-30px;"><strong>Processos com Erro</strong></h6>
+                    <h1 style="color:red;font-size:35px;margin-top:-15px;"><strong>@(Model.Erros)</strong></h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card-body mais-detalhes" style="width:95% !important;">
+                <span class=""><a href="#" onclick="MostraExecucoes(@("1"))">Mais detalhes <i style="color:darkslategrey;" class="ion-plus-circled"></i></a></span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Notificações -->
+    <div class="col-md-3">
+
+        <div class="row">
+            <div id="card3" class="card-box" style="width:96%;height:140px;">
+                <div class="card-body">
+                    <div class="pull-right">
+                        <i class="md-question-answer" style="font-size:3em;color:#3c82ca"></i>
+                    </div>
+                    <h1 class="display-4">&nbsp;</h1>
+                    <h6 style="font-size:15px;margin-top:-30px;"><strong>Processos em Execução</strong></h6>
+                    <h1 style="color:orangered;font-size:35px;margin-top:-15px;"><strong>@(Model.Executando)</strong></h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card-body mais-detalhes" style="width:96% !important;">
+                <span class=""><a href="#" onclick="MostraExecucoes(@("2"))">Mais detalhes <i style="color:darkslategrey;" class="ion-plus-circled"></i></a></span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="~/dashboard/scripts/viewcomponents/CartoesVisita.js"></script>

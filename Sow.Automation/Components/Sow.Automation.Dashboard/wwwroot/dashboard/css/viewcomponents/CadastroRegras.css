@@ -1,0 +1,26 @@
+﻿body {
+}
+/* INICIO - BOTÕES MODAL */
+.btn-custom-modal {
+    background-color: #185fcb !important;
+    color: whitesmoke !important;
+}
+
+.btn-custom-modal:hover {
+        background: #457fd8 !important;
+    }
+/* FIM - BOTÕES MODAL */
+
+.dropDownStyle {
+    margin-left: 15px;
+    border-radius: 4px;
+    border-style: unset;
+    background-color: #f6f6f7;
+}
+
+    .dropDownStyle:hover {
+        margin-left: 15px;
+        border-radius: 4px;
+        border-style: unset;
+        background-color: #eaeaef;
+    }

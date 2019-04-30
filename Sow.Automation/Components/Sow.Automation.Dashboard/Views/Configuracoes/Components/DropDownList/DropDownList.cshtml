@@ -1,0 +1,45 @@
+﻿@model Sow.Automation.Dashboard.ViewModels.DropDownViewModel
+
+<div>
+    <select class="dropDownStyle"  onchange="OnchangeEstados()" id="idDropDownEstados" style="margin-left:30px;">
+        <option value="default">Selecione o Estado</option>
+    @foreach (var op in Model.Estados)
+    {
+        <option value="@op.Id">@op.Nome</option>
+     }
+    </select>
+</div>
+
+<div>
+    <select class="dropDownStyle"  onchange="OnchangeComarcas()" id="idDropDownComarcas" style="margin-left:30px;">
+        <option value="default">Selecione uma Comarca</option>
+        @foreach (var op in Model.Comarcas)
+         {
+         <option value="@op.Id">@op.Descricao</option>
+         }
+    </select>
+</div>
+
+<div>
+    <select class="dropDownStyle" onchange="OnchangeCidades()" id="idDropDownCidades" style="margin-left:30px;">
+        <option value="default">Selecione uma Cidade</option>
+        <option value="0">Comarca sem Cidade</option>
+        @foreach (var op in Model.Cidades)
+    {
+        <option value="@op.Id">@op.Descricao</option>
+}
+    </select>
+</div>
+
+<div>
+
+    <select class="dropDownStyle" onchange="OnchangeBairros()"  id="idDropDownBairros" style="margin-left:30px;">
+        <option value="default">Selecione um Bairro</option>
+        @foreach (var op in Model.Bairros)
+         {
+        <option value="@op.Id">@op.Descricao</option>
+         }
+    </select>
+
+</div>
+

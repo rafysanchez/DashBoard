@@ -1,0 +1,20 @@
+﻿body {
+}
+
+table th{
+    color:white;
+
+}
+
+.status-processo-texto-verde{
+    color:green;
+}
+.status-processo-texto-vermelho {
+    color: red;
+}
+.status-processo-texto-azul {
+    color: blue;
+}
+.status-processo-texto-laranja {
+    color: orangered;
+}

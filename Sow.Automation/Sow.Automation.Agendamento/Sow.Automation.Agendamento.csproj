@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2313AB6C-392E-43D2-A55F-C1259F862C8E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sow.Automation.Orquestrador</RootNamespace>
+    <AssemblyName>Sow.Automation.Orquestrador</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0" />
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="SOW.Automation.Interface.Trj">
+      <HintPath>..\..\..\Projeto\SOW.Components\Sow.Component.OmniCobranca - Copia\SOW.Automation.Interface.Trj\bin\Debug\SOW.Automation.Interface.Trj.dll</HintPath>
+    </Reference>
+    <Reference Include="SOW.Automation.Kernel">
+      <HintPath>..\..\..\Projeto\SOW.Components\Sow.Component.OmniCobranca - Copia\SOW.Automation.Interface.Trj\bin\Debug\SOW.Automation.Kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="SOW.Automation.OmniCobrancaWorkflow">
+      <HintPath>..\..\..\Projeto\SOW.Components\Sow.Component.OmniCobranca - Copia\SOW.Automation.OmniCobrancaWorkflow\bin\Debug\SOW.Automation.OmniCobrancaWorkflow.dll</HintPath>
+    </Reference>
+    <Reference Include="SOW.Automation.Pom">
+      <HintPath>..\..\..\Projeto\SOW.Components\Sow.Component.OmniCobranca - Copia\SOW.Automation.Pom\bin\Debug\SOW.Automation.Pom.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstracao\IExecutor.cs" />
+    <Compile Include="Abstracao\IJobRepository.cs" />
+    <Compile Include="Abstracao\IAgendamento.cs" />
+    <Compile Include="Ioc\ContainerService.cs" />
+    <Compile Include="Ioc\NinjectProgram.cs" />
+    <Compile Include="Abstracao\IService.cs" />
+    <Compile Include="PluginRpa\PluginOmniCobranca.cs" />
+    <Compile Include="Repository\JobRepository.cs" />
+    <Compile Include="Model\AgendamentoBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicos\Agendamentos.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sow.Automation.Data\Sow.Automation.Data.csproj">
+      <Project>{647c4e97-bec9-43c2-a99a-12d41768dc1b}</Project>
+      <Name>Sow.Automation.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

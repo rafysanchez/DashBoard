@@ -1,0 +1,30 @@
+﻿@model Sow.Automation.Dashboard.ViewModels.UserLoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+        asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+        asp-fallback-test="window.jQuery">
+</script>
+
+<input type="hidden" id="loginCliente" value="" />
+
+
+<div class="modal fade" id="login-modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <img src="~/images/logo-sow.png" class="img-responsive size-logo" />
+            <br>
+            <form name="validatelogin">
+                <input type="text" name="NomeUsuario" asp-for="NomeUsuario" id="username" placeholder="Login">
+                <input type="password" name="SenhaUsuario" asp-for="SenhaUsuario" id="password" placeholder="Senha">
+                <button href="#" id="btnLogin" name="Passwd" class="login loginmodal-submit" style="width:100%;">Acessar</button>
+                <span class="error" id="idErro"></span>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/dashboard/scripts/Autenticacao.js"></script>

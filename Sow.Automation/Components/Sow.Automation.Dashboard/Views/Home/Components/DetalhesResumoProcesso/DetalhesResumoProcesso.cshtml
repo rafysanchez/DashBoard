@@ -1,0 +1,94 @@
+﻿@model Sow.Automation.Dashboard.ViewModels.ResumoProcessosViewModel
+@using Sow.Automation.Data.Entidades.ServicosRoboContexto.Enums
+
+<link rel="stylesheet" href="~/dashboard/css/viewcomponents/ResumoProcessos.css">
+
+
+<div data-backdrop="static" class="modal fade" id="idModalHistoricoAlteracao" role="dialog">
+    <div class="modal-dialog" role="document" style="width:70%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button onclick="SetTimersAgain()" type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white; height:10px;"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"> Detalhes do Processo  </h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+
+                    <div id="divContainerDocumentos" class="container">
+
+                        <div class="x_panel">
+
+                            <div class="x_title">
+                                <h2>Processo:</h2>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="x_content">
+                                <div class="row" style="padding:0 20px;">
+
+                                    <div class="row">
+                                        <div id="tabelaHistorico">
+                                            <table id="idtableDetalheResumoProcessos" class="table table-striped">
+                                                <thead class="hideDados">
+                                                    <tr style="background:#3c81ca">
+                                                        <th>Descricao</th>
+                                                        <th>Hora Inicio</th>
+                                                        <th>Hora Final</th>
+                                                        <th>Status</th>
+                                                        <th>Detalhes</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="hideDados">
+                                                    @foreach (var exec in Model.DetalhesProcessos)
+                                                    {
+                                                        <tr id="@("listaprocessos_" + exec.Execucao.IdProcesso)">
+                                                            <td>@exec.Descricao</td>
+                                                            <td>@exec.Execucao.Inicio</td>
+                                                            <td>@exec.Execucao.Fim</td>
+                                                            <td>@exec.Execucao.Status</td>
+                                                            @if (exec.Execucao.Status == EStatusAgendamento.Finalizado)
+                                                            {
+                                                                <td><a href="#" class="btn btn-sm btn-custom-modal hide">Ver Detalhes</a></td>
+                                                            }
+                                                            @if (exec.Execucao.Status == EStatusAgendamento.Aguardando)
+                                                            {
+                                                                <td><a href="#" class="btn btn-sm btn-custom-modal hide">Ver Detalhes</a></td>
+                                                            }
+                                                            @if (exec.Execucao.Status == EStatusAgendamento.FinalizadoComErro)
+                                                            {
+                                                                <td><a onclick="MostraDetalhes('@("#detalhes_"+ exec.Execucao.IdExecucao)');" id="@("btnDetalhes_" + exec.Execucao.IdExecucao)" href="#" class="btn-sm btn-custom-modal-blue">Ver Detalhes</a></td>
+                                                            }
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                            @foreach (var err in Model.DetalhesProcessos)
+                                            {
+                                                <div class="corpoErro hide" id="@("detalhes_" + err.Execucao.IdExecucao)">
+                                                    <p>
+                                                        @err.Execucao.MensagemStatus
+                                                    </p>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="bnt_cancelar" class="col-md-12 btnhide">
+                        <button onclick="SetTimersAgain()" class="btn btn-custom-modal pull-right btnhide" data-dismiss="modal" aria-label="Close" style="color: whitesmoke; width:100px; margin-top:20px; background-color:cornflowerblue; border:none">Cancelar</button>
+                    </div>
+                    <div id="bnt_voltar" class="col-md-12 hide">
+                        <button onclick="VoltaParaLista();" class="btn btn-custom-modal pull-right" aria-label="Close" style="color: whitesmoke; width:100px;background-color:cornflowerblue; margin-top:20px; border:none">Voltar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/dashboard/scripts/viewcomponents/DetalheResumoProcesso.js"></script>
