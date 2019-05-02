@@ -45,10 +45,11 @@ namespace ConsoleApp1
 
             //ExcelHandler handler = new ExcelHandler(@"C:\temp\", @"Planilha de Testes.xlsm", new JsonServices(),stages);
             //handler.AlocarObjeto();
-
+            Console.WriteLine("iniciando....");
             IExecutor age = new Agendamentos();
             age.InicializaAgendamentoLeituraAsyncrono();
             age.InicializaAgendamentoExecucoesAsyncrono();
+            Console.WriteLine("finalizando tecle algo para sair.......");
             Console.ReadKey();
         }
 

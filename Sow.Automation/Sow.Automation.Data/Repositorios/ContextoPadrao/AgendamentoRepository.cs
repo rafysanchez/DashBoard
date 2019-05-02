@@ -153,17 +153,19 @@ namespace Sow.Automation.Data.Repositorios.ContextoPadrao
                 using (_contexto.Connection)
                 {
                     _contexto.GetConnection();
+
                     var q = AgendamentoInfoQueries.SelecionarTodos();
-                 var agendamentos = _contexto
-                  .Connection
-                    .Query<AgendamentoInfo>(q, new { });
+
+                    var agendamentos = _contexto
+                     .Connection
+                       .Query<AgendamentoInfo>(q, new { });
 
 
                     foreach (var ag in agendamentos)
                     {
-                      ag.AtualizaEmail(_contexto
-                        .Connection
-                           .Query<EmailInfo>(EmailInfoQueries.SelectEmailInfoPorId(ag.IdProcesso.ToString()), new { Id = ag.IdProcesso.ToString() }).FirstOrDefault());
+                        ag.AtualizaEmail(_contexto
+                          .Connection
+                             .Query<EmailInfo>(EmailInfoQueries.SelectEmailInfoPorId(ag.IdProcesso.ToString()), new { Id = ag.IdProcesso.ToString() }).FirstOrDefault());
                     }
 
                     return agendamentos;
